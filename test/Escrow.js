@@ -59,16 +59,37 @@ describe("Escrow", function () {
         "You're not the arbiter"
       );
     });
-    it("should send all eth to beneficiary's address", async function () {
+    it("should empty contract balance after approval", async function () {
+      const { Escrow, arbiter } = await loadFixture(
+        deployContractAndSetVariables
+      );
+
+      const approveTxn = await Escrow.connect(arbiter).approve();
+      await approveTxn.wait();
+
+      const contractBalance = await ethers.provider.getBalance(
+        Escrow.getAddress()
+      );
+
+      expect(contractBalance).to.equal(0);
+    });
+    it("should send everything to beneficiary after approval", async function () {
       const { Escrow, arbiter, beneficiary, amount } = await loadFixture(
         deployContractAndSetVariables
       );
 
-      await expect(Escrow.connect(arbiter).approve()).to.changeEtherBalance(
-        beneficiary,
-        `+${amount}`
+      const initBalance = await ethers.provider.getBalance(beneficiary.address);
+      const contractBalance = await ethers.provider.getBalance(Escrow.getAddress());
+
+      const approveTxn = await Escrow.connect(arbiter).approve();
+      await approveTxn.wait();
+
+      const finalBalance = await ethers.provider.getBalance(
+        beneficiary.address
       );
-      expect(await Escrow.balance()).to.equal(0);
+
+      expect(finalBalance - initBalance).to.equal(amount);
+      expect(finalBalance - initBalance).to.equal(contractBalance);
     });
   });
 });
