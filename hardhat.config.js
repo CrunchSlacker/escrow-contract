@@ -1,7 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
-const { API_URL, PRIVATE_KEY } = process.env;
+const { API_URL, PRIVATE_KEY, ETHERSCAN_KEY } = process.env;
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -20,5 +20,11 @@ module.exports = {
       accounts: [`0x${PRIVATE_KEY}`],
       chainId: 11155111,
     },
+  },
+  etherscan: {
+    apiKey: ETHERSCAN_KEY,
+  },
+  sourcify: {
+    enabled: true,
   },
 };
