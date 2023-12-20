@@ -26,7 +26,9 @@ contract Escrow {
         _;
     }
 
-    receive() external payable {}
+    receive() external payable {
+        require(msg.sender == depositor, "You're not the depositor, transaction reverted");
+    }
 
     event Approved(uint sent);
 }
