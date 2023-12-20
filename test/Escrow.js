@@ -28,7 +28,9 @@ describe("Escrow", function () {
   it("should set the balance to msg.value (0.1 eth)", async function () {
     const { Escrow, amount } = await loadFixture(deployContractAndSetVariables);
 
-    expect(await Escrow.balance()).to.equal(amount);
+    expect(await ethers.provider.getBalance(Escrow.getAddress())).to.equal(
+      amount
+    );
   });
 
   describe("Approve Function", function () {
@@ -79,7 +81,9 @@ describe("Escrow", function () {
       );
 
       const initBalance = await ethers.provider.getBalance(beneficiary.address);
-      const contractBalance = await ethers.provider.getBalance(Escrow.getAddress());
+      const contractBalance = await ethers.provider.getBalance(
+        Escrow.getAddress()
+      );
 
       const approveTxn = await Escrow.connect(arbiter).approve();
       await approveTxn.wait();
@@ -90,6 +94,42 @@ describe("Escrow", function () {
 
       expect(finalBalance - initBalance).to.equal(amount);
       expect(finalBalance - initBalance).to.equal(contractBalance);
+    });
+  });
+
+  describe("Receive Function", function () {
+    it("Should receive any sent ether from the depositor", async function () {
+      const { Escrow, depositor, amount } = await loadFixture(
+        deployContractAndSetVariables
+      );
+
+      const initContractBalance = await ethers.provider.getBalance(
+        Escrow.getAddress()
+      );
+
+      const txn = await depositor.sendTransaction({
+        to: Escrow.getAddress(),
+        value: amount,
+      });
+      await txn.wait();
+
+      const finalContractBalance = await ethers.provider.getBalance(
+        Escrow.getAddress()
+      );
+
+      expect(finalContractBalance - initContractBalance).to.equal(amount);
+    });
+    it("Should revert any transaction that is not sent from the depositor", async function () {
+      const { Escrow, other, amount } = await loadFixture(
+        deployContractAndSetVariables
+      );
+
+      await expect(
+        other.sendTransaction({
+          to: Escrow.getAddress(),
+          value: amount,
+        })
+      ).to.be.revertedWith("You're not the depositor, transaction reverted");
     });
   });
 });
