@@ -1,0 +1,32 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@alch/alchemy-web3": "^1.4.7",
+    "@moralisweb3/common-evm-utils": "^2.23.2",
+    "@moralisweb3/next": "^2.23.2",
+    "dotenv": "^16.3.1",
+    "ethers": "^6.9.0",
+    "moralis": "^2.23.2",
+    "next": "^14.0.4",
+    "next-auth": "^4.24.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "web3": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.2.45",
+    "typescript": "5.3.3"
+  }
+}
