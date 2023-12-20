@@ -1,5 +1,5 @@
-require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
+require("@nomicfoundation/hardhat-toolbox");
 
 const { API_URL, PRIVATE_KEY, ETHERSCAN_KEY } = process.env;
 
@@ -10,10 +10,6 @@ module.exports = {
     hardhat: {},
     localhost: {
       url: "http://127.0.0.1:8545",
-      mining: {
-        auto: false,
-        interval: 1000,
-      },
     },
     sepolia: {
       url: API_URL,
