@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Color Palette */
+.bg-F8F9FA { background-color: #F8F9FA; }
+.bg-E9ECEF { background-color: #E9ECEF; }
+.bg-DEE2E6 { background-color: #DEE2E6; }
+.bg-CED4DA { background-color: #CED4DA; }
+.bg-ADB5BD { background-color: #ADB5BD; }
+.bg-6C757D { background-color: #6C757D; }
+.bg-495057 { background-color: #495057; }
+.bg-343A40 { background-color: #343A40; }
+.text-212529 { color: #212529; }
+.text-6C757D { color: #6C757D; }
+
+/* Custom Styles for Home Page */
+.home-container {
+  padding: 2rem;
+  background-color: #F8F9FA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Make sure the container takes the full height of the viewport */
+}
+
+.connect-button {
+  margin-top: 1rem;
+  background-color: #6C757D;
+  color: #F8F9FA;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.welcome-message {
+  margin-top: 1rem;
+  background-color: #495057;
+  color: #F8F9FA;
+  font-size: 2rem;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  text-align: center;
+}
+
+.deploy-form-container {
+  margin-top: 1rem;
+  width: 100%; /* Make the form full-width */
+  max-width: 400px; /* Set a maximum width for better readability */
+}
+
+.deploy-form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #212529;
+}
+
+.deploy-form-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ADB5BD;
+  border-radius: 0.25rem;
+}
+
+.deploy-form-button {
+  background-color: #343A40;
+  color: #F8F9FA;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.contract-list-container {
+  margin-top: 1rem;
+  overflow: auto;
+}
+
+.contract-list-title {
+  font-size: 4rem;
+  color: #343A40;
+}
+
+.contract-list-item {
+  list-style-type: none;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: #E9ECEF;
+  border: 1px solid #DEE2E6;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s;
+}
+
+.contract-list-item:hover {
+  background-color: #CED4DA;
+}
+
+.contract-details-container {
+  padding: 1rem;
+  background-color: #F8F9FA;
+}
+
+.contract-details-title {
+  font-size: 2rem;
+  color: #343A40;
+  margin-bottom: 1rem;
+}
+
+.contract-details-text {
+  font-size: 1rem;
+  color: #495057;
+}
+
+.contract-details-button {
+  background-color: #343A40;
+  color: #F8F9FA;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
