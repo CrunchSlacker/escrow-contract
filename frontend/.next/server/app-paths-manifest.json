@@ -1,0 +1,6 @@
+{
+  "/not-found": "app/not-found.js",
+  "/page": "app/page.js",
+  "/dapp/contract/[contractAddress]/page": "app/dapp/contract/[contractAddress]/page.js",
+  "/api/find-contract/route": "app/api/find-contract/route.js"
+}
