@@ -1,5 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/api/find-depositor/route": "app/api/find-depositor/route.js",
-  "/api/add-contract/route": "app/api/add-contract/route.js"
-}
