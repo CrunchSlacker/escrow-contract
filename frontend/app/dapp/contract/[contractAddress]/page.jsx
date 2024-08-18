@@ -16,16 +16,24 @@ function ContractDetails({ params }) {
 
   async function getContractInformation() {
     await fetch(`/api/find-contract?depositor=${depositor}`, {
-      method: "GET"
+      method: "GET",
     }).then(async (response) => {
       const responseJson = await response.json();
-      setData(responseJson); 
-      console.log(responseJson)
-      
+      setData(responseJson);
     });
   }
 
-  console.log(data.contracts)
+  async function deleteContract() {
+    await fetch("/api/delete-contract", {
+      method: "POST",
+      body: JSON.stringify({
+        depositor,
+        contractAddress: params.contractAddress,
+      }),
+    }).then(async (response) => {
+      const responseJson = await response.json();
+    });
+  }
 
   return (
     <div className="contract-details-container">
@@ -35,7 +43,18 @@ function ContractDetails({ params }) {
       <button className="contract-details-button" onClick={() => router.back()}>
         Back
       </button>
-      <button onClick={async () => await getContractInformation()}>Update</button>
+      <button onClick={async () => await getContractInformation()}>
+        Update
+      </button>
+      <button
+        className="contract-details-button"
+        onClick={async () => {
+          await deleteContract();
+          router.back();
+        }}
+      >
+        Delete
+      </button>
     </div>
   );
 }
